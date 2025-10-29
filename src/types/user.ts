@@ -1,7 +1,7 @@
 type UserBase = {
   id: number;
   name: string;
-  role: "student" | "mentor";
+
   email: string;
   age: number;
   postCode: string;
@@ -11,6 +11,7 @@ type UserBase = {
 };
 
 type Student = UserBase & {
+  role: "student";
   studyMinutes: number;
   taskCode: number;
   studyLangs: string[];
@@ -18,6 +19,7 @@ type Student = UserBase & {
 };
 
 type Mentor = UserBase & {
+  role: "mentor";
   experienceDays: number;
   useLangs: string[];
   availableStartCode: number;
