@@ -1,9 +1,11 @@
 import type { FC } from "react";
-import { USER_LIST } from "../data/userList";
-import type { UserType, Mentor, Student } from "../types/user";
 
-const TABLE_BORDER = "border border-gray-400";
-const TB_PRELINE = `${TABLE_BORDER} whitespace-pre-line`;
+import { USER_LIST } from "../data/userList";
+import { CommonHeader } from "./header/CommonHeader";
+import { TABLE_BORDER, TB_PRELINE } from "../styles/style";
+import { StudentHeader } from "./header/StudentHeader";
+import { MentorHeader } from "./header/MentorHeader";
+import type { UserType, Mentor, Student } from "../types/user";
 
 // 型ガード関数
 const isStudentUser = (user: UserType): user is Student =>
@@ -14,26 +16,14 @@ export const AllUserList: FC = () => {
     <table className="table-auto border-collapse border border-gray-400">
       <thead>
         <tr className={`bg-gray-200 ${TABLE_BORDER}`}>
-          <th className={TABLE_BORDER}>名前</th>
-          <th className={TABLE_BORDER}>ロール</th>
-          <th className={TABLE_BORDER}>メールアドレス</th>
-          <th className={TABLE_BORDER}>年齢</th>
-          <th className={TABLE_BORDER}>郵便番号</th>
-          <th className={TABLE_BORDER}>電話番号</th>
-          <th className={TABLE_BORDER}>趣味</th>
-          <th className={TABLE_BORDER}>URL</th>
+          {/* 共通ヘッダー */}
+          <CommonHeader />
+
           {/* student */}
-          <th className={TABLE_BORDER}>勉強時間</th>
-          <th className={TABLE_BORDER}>課題番号</th>
-          <th className={TABLE_BORDER}>勉強中の言語</th>
-          <th className={TABLE_BORDER}>ハピネススコア</th>
-          <th className={TABLE_BORDER}>対応可能なメンター</th>
+          <StudentHeader />
+
           {/* mentor */}
-          <th className={TABLE_BORDER}>実務経験月数</th>
-          <th className={TABLE_BORDER}>現場で使っている言語</th>
-          <th className={TABLE_BORDER}>担当できる課題番号初め</th>
-          <th className={TABLE_BORDER}>担当できる課題番号終わり</th>
-          <th className={TABLE_BORDER}>対応可能な生徒</th>
+          <MentorHeader />
         </tr>
       </thead>
       <tbody>
