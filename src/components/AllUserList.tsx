@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { USER_LIST } from "../data/userList";
-import type { UserType } from "../types/user";
+import type { UserType, Mentor, Student } from "../types/user";
 
 export const AllUserList: FC = () => {
   return (
@@ -39,6 +39,8 @@ export const AllUserList: FC = () => {
 };
 
 const UserRow: FC<{ user: UserType }> = ({ user }) => {
+  const supportedUsers = findSupportedUsers(user);
+
   return (
     <tr className="border border-gray-400">
       <td className="border border-gray-400">{user.name}</td>
@@ -64,7 +66,11 @@ const UserRow: FC<{ user: UserType }> = ({ user }) => {
       <td className="border border-gray-400">
         {user.role === "student" ? user.score : ""}
       </td>
-      <td className="border border-gray-400"></td>
+      <td className="border border-gray-400 whitespace-pre-line">
+        {user.role === "student"
+          ? supportedUsers.map((u) => u.name).join("\n ")
+          : ""}
+      </td>
       {/* mentor */}
       <td className="border border-gray-400">
         {user.role === "mentor" ? user.experienceDays : ""}
@@ -78,7 +84,32 @@ const UserRow: FC<{ user: UserType }> = ({ user }) => {
       <td className="border border-gray-400">
         {user.role === "mentor" ? user.availableEndCode : ""}
       </td>
-      <td className="border border-gray-400"></td>
+      <td className="border border-gray-400 whitespace-pre-line">
+        {user.role === "mentor"
+          ? supportedUsers.map((u) => u.name).join("\n")
+          : ""}
+      </td>
     </tr>
   );
+};
+
+const findSupportedUsers = (user: UserType): UserType[] => {
+  if (user.role === "student") {
+    return USER_LIST.filter(
+      (u): u is Mentor =>
+        u.role === "mentor" &&
+        u.availableStartCode <= user.taskCode &&
+        u.availableEndCode >= user.taskCode
+    );
+  }
+
+  if (user.role === "mentor") {
+    return USER_LIST.filter(
+      (u): u is Student =>
+        u.role === "student" &&
+        u.taskCode >= user.availableStartCode &&
+        u.taskCode <= user.availableEndCode
+    );
+  }
+  return [];
 };

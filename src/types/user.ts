@@ -10,7 +10,7 @@ type UserBase = {
   url: string;
 };
 
-type Student = UserBase & {
+export type Student = UserBase & {
   role: "student";
   studyMinutes: number;
   taskCode: number;
@@ -18,7 +18,7 @@ type Student = UserBase & {
   score: number;
 };
 
-type Mentor = UserBase & {
+export type Mentor = UserBase & {
   role: "mentor";
   experienceDays: number;
   useLangs: string[];
