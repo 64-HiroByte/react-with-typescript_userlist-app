@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { UserTableHeader } from "./UserTableHeader";
 import { UserTableBody } from "./UserTableBody";
-// import { TABLE_BORDER } from "../styles/style";
 
 type Props = { view: "all" | "student" | "mentor" };
 
