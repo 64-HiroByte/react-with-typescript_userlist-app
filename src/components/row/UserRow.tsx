@@ -1,14 +1,19 @@
 import type { FC } from "react";
-import type { Mentor, Student, UserType } from "../../types/user";
-import { TABLE_BORDER, TB_PRELINE } from "../../styles/style";
+
 import { USER_LIST } from "../../data/userList";
+import { findSupportedUsers } from "../../utils/findSupportedUsers";
+import { BaseDataCell } from "../cell/BaseDataCell";
+
+import type { Student, UserType } from "../../types/user";
+
+import { TABLE_BORDER, TB_PRELINE } from "../../styles/style";
 
 // 型ガード関数
 const isStudentUser = (user: UserType): user is Student =>
   user.role === "student";
 
 export const UserRow: FC<{ user: UserType }> = ({ user }) => {
-  const supportedUsers = findSupportedUsers(user);
+  const supportedUsers = findSupportedUsers(user, USER_LIST);
 
   const STUDENT_EMPTY_COLS = 5;
   const MENTOR_EMPTY_COLS = 5;
@@ -50,42 +55,8 @@ export const UserRow: FC<{ user: UserType }> = ({ user }) => {
   );
 };
 
-const BaseDataCell: FC<{ user: UserType }> = ({ user }) => (
-  <>
-    <td className={TABLE_BORDER}>{user.name}</td>
-    <td className={TABLE_BORDER}>{user.role}</td>
-    <td className={TABLE_BORDER}>{user.email}</td>
-    <td className={TABLE_BORDER}>{user.age}</td>
-    <td className={TABLE_BORDER}>{user.postCode}</td>
-    <td className={TABLE_BORDER}>{user.phone}</td>
-    <td className={TB_PRELINE}>{user.hobbies.join("\n")}</td>
-    <td className={TABLE_BORDER}>{user.url}</td>
-  </>
-);
-
 const renderEmptyCells = (count: number, userId: number) => {
   return Array.from({ length: count }).map((_, i) => (
     <td key={`${userId}-${i}`} className={TABLE_BORDER}></td>
   ));
-};
-
-const findSupportedUsers = (user: UserType): UserType[] => {
-  if (user.role === "student") {
-    return USER_LIST.filter(
-      (u): u is Mentor =>
-        u.role === "mentor" &&
-        u.availableStartCode <= user.taskCode &&
-        u.availableEndCode >= user.taskCode
-    );
-  }
-
-  if (user.role === "mentor") {
-    return USER_LIST.filter(
-      (u): u is Student =>
-        u.role === "student" &&
-        u.taskCode >= user.availableStartCode &&
-        u.taskCode <= user.availableEndCode
-    );
-  }
-  return [];
 };
