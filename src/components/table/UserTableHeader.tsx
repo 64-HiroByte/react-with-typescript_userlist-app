@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { CommonHeader } from "./header/CommonHeader";
-import { StudentHeader } from "./header/StudentHeader";
-import { MentorHeader } from "./header/MentorHeader";
+import { CommonHeader } from "../header/CommonHeader";
+import { StudentHeader } from "../header/StudentHeader";
+import { MentorHeader } from "../header/MentorHeader";
 
 type Props = { view: "all" | "student" | "mentor" };
 

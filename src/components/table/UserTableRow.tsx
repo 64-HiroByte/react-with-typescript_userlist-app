@@ -15,7 +15,7 @@ type Props = {
   view: "all" | "student" | "mentor";
 };
 
-export const UserRow: FC<Props> = ({ user, view }) => {
+export const UserTableRow: FC<Props> = ({ user, view }) => {
   const STUDENT_EMPTY_COLS = 5;
   const MENTOR_EMPTY_COLS = 5;
 

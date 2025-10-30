@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { AllUserList } from "./components/AllUserList";
 // import { StudentList } from "./components/StudentList";
 // import { MentorList } from "./components/MentorList";
-import { UserTable } from "./components/UserTable";
+import { UserTable } from "./components/table/UserTable";
 
 function App() {
   const [view, setView] = useState<"all" | "student" | "mentor">("all");
