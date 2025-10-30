@@ -4,13 +4,10 @@ import { USER_LIST } from "../../data/userList";
 import { findSupportedUsers } from "../../utils/findSupportedUsers";
 import { BaseDataCell } from "../cell/BaseDataCell";
 
-import type { Student, UserType } from "../../types/user";
+import type { UserType } from "../../types/user";
 
 import { TABLE_BORDER, TB_PRELINE } from "../../styles/style";
-
-// 型ガード関数
-const isStudentUser = (user: UserType): user is Student =>
-  user.role === "student";
+import { isStudentUser } from "../../utils/typeGuards";
 
 export const UserRow: FC<{ user: UserType }> = ({ user }) => {
   const supportedUsers = findSupportedUsers(user, USER_LIST);
