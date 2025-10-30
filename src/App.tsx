@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AllUserList } from "./components/AllUserList";
+import { StudentList } from "./components/StudentList";
 
 function App() {
   const [view, setView] = useState<"all" | "student" | "mentor">("all");
@@ -13,7 +14,7 @@ function App() {
         <button onClick={() => setView("mentor")}>メンター</button>
       </div>
       {view === "all" && <AllUserList />}
-      {/* {view === "all" && <StudentList />} */}
+      {view === "student" && <StudentList />}
       {/* {view === "all" && <MentorList />} */}
     </>
   );
