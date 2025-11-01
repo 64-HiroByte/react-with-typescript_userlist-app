@@ -13,8 +13,16 @@ export const UserTableContainer: FC<Props> = ({ view }) => {
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
-      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+      // 同じ列をクリックした場合
+      if (sortOrder === "asc") setSortOrder("desc");
+      else if (sortOrder === "desc") {
+        setSortKey(null);
+        setSortOrder("asc");
+      } else {
+        setSortOrder("asc");
+      }
     } else {
+      // 他の列
       setSortKey(key);
       setSortOrder("asc");
     }

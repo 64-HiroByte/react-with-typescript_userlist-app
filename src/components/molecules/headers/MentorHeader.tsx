@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { HeaderCell } from "../../atoms/cell/HeaderCell";
+import { SortIcon } from "../../atoms/icons/SortIcon";
 
 type Props = {
   view: "all" | "student" | "mentor";
@@ -20,9 +21,12 @@ export const MentorHeader: FC<Props> = ({
     <>
       <HeaderCell onClick={() => onSort("experienceDays")}>
         実務経験月数
-        {isSortable &&
-          sortKey === "experienceDays" &&
-          (sortOrder === "asc" ? "▲" : "▼")}
+        <SortIcon
+          isSortable={isSortable}
+          sortKey={sortKey}
+          activeKey="experienceDays"
+          sortOrder={sortOrder}
+        />
       </HeaderCell>
       <HeaderCell>現場で使っている言語</HeaderCell>
       <HeaderCell>担当できる課題番号初め</HeaderCell>
