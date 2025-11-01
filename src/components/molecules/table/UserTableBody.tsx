@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { USER_LIST } from "../../data/userList";
-import type { UserType } from "../../types/user";
+import { USER_LIST } from "../../../data/userList";
+import type { UserType } from "../../../types/user";
 import { UserTableRow } from "./UserTableRow";
 
 type Props = { view: "all" | "student" | "mentor" };

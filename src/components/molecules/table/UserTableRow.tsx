@@ -4,11 +4,11 @@ import { BaseDataCell } from "../cell/BaseDataCell";
 import { StudentDataCell } from "../cell/StudentDataCell";
 import { MentorDataCell } from "../cell/MentorDataCell";
 
-import type { UserType } from "../../types/user";
+import type { UserType } from "../../../types/user";
 
-import { isMentorUser, isStudentUser } from "../../utils/typeGuards";
+import { isMentorUser, isStudentUser } from "../../../utils/typeGuards";
 
-import { TABLE_BORDER } from "../../styles/style";
+import { TABLE_BORDER } from "../../../styles/style";
 
 type Props = {
   user: UserType;

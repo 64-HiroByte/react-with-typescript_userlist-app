@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserTable } from "./components/table/UserTable";
+import { UserTable } from "./components/organisms/UserTable";
 
 function App() {
   const [view, setView] = useState<"all" | "student" | "mentor">("all");

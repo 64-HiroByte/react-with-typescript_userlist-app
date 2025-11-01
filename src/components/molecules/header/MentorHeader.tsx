@@ -1,4 +1,4 @@
-import { TABLE_BORDER } from "../../styles/style";
+import { TABLE_BORDER } from "../../../styles/style";
 
 export const MentorHeader = () => (
   <>

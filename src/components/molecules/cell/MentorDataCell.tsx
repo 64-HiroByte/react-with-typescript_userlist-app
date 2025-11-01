@@ -1,10 +1,10 @@
 import type { FC } from "react";
 
-import type { UserType } from "../../types/user";
-import { TABLE_BORDER, TB_PRELINE } from "../../styles/style";
-import { findSupportedUsers } from "../../utils/findSupportedUsers";
-import { isMentorUser } from "../../utils/typeGuards";
-import { USER_LIST } from "../../data/userList";
+import type { UserType } from "../../../types/user";
+import { TABLE_BORDER, TB_PRELINE } from "../../../styles/style";
+import { findSupportedUsers } from "../../../utils/findSupportedUsers";
+import { isMentorUser } from "../../../utils/typeGuards";
+import { USER_LIST } from "../../../data/userList";
 
 export const MentorDataCell: FC<{ user: UserType }> = ({ user }) => {
   const supportedUsers = findSupportedUsers(user, USER_LIST);
