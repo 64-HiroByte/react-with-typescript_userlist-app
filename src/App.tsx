@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserTable } from "./components/organisms/UserTable";
+import { UserTableContainer } from "./components/organisms/UserTableContainer";
 
 function App() {
   const [view, setView] = useState<"all" | "student" | "mentor">("all");
@@ -14,7 +14,7 @@ function App() {
       </div>
 
       {/* データテーブル描画 */}
-      <UserTable view={view} />
+      <UserTableContainer view={view} />
     </>
   );
 }
