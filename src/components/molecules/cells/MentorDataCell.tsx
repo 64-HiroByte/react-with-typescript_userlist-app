@@ -1,10 +1,10 @@
 import type { FC } from "react";
 
 import type { UserType } from "../../../types/user";
-import { TABLE_BORDER, TB_PRELINE } from "../../../styles/style";
 import { findSupportedUsers } from "../../../utils/findSupportedUsers";
 import { isMentorUser } from "../../../utils/typeGuards";
 import { USER_LIST } from "../../../data/userList";
+import { DataCell } from "../../atoms/cell/DataCell";
 
 export const MentorDataCell: FC<{ user: UserType }> = ({ user }) => {
   const supportedUsers = findSupportedUsers(user, USER_LIST);
@@ -13,13 +13,11 @@ export const MentorDataCell: FC<{ user: UserType }> = ({ user }) => {
 
   return (
     <>
-      <td className={TABLE_BORDER}>{user.experienceDays}</td>
-      <td className={TB_PRELINE}>{user.useLangs.join("\n")}</td>
-      <td className={TABLE_BORDER}>{user.availableStartCode}</td>
-      <td className={TABLE_BORDER}>{user.availableEndCode}</td>
-      <td className={TB_PRELINE}>
-        {supportedUsers.map((u) => u.name).join("\n")}
-      </td>
+      <DataCell>{user.experienceDays}</DataCell>
+      <DataCell>{user.useLangs.join("\n")}</DataCell>
+      <DataCell>{user.availableStartCode}</DataCell>
+      <DataCell>{user.availableEndCode}</DataCell>
+      <DataCell>{supportedUsers.map((u) => u.name).join("\n")}</DataCell>
     </>
   );
 };

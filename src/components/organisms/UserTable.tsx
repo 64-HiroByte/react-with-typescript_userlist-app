@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { UserTableHeader } from "../molecules/table/UserTableHeader";
-import { UserTableBody } from "../molecules/table/UserTableBody";
+import { UserTableHeader } from "../molecules/tables/UserTableHeader";
+import { UserTableBody } from "../molecules/tables/UserTableBody";
 
 type Props = { view: "all" | "student" | "mentor" };
 
