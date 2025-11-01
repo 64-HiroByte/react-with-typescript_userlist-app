@@ -1,16 +1,21 @@
 import type { FC } from "react";
+
 import { CommonHeader } from "../headers/CommonHeader";
 import { StudentHeader } from "../headers/StudentHeader";
 import { MentorHeader } from "../headers/MentorHeader";
-
-type SortKey = "studyMinutes" | "score" | "experienceDays";
-type SortOrder = "asc" | "desc";
+import type {
+  MentorSortKeyType,
+  SortKeyType,
+  SortOrderType,
+  StudentSortKeyType,
+  ViewType,
+} from "../../../types/table";
 
 type Props = {
-  view: "all" | "student" | "mentor";
-  onSort: (key: SortKey) => void;
-  sortKey: SortKey | null;
-  sortOrder: SortOrder;
+  view: ViewType;
+  onSort: (key: SortKeyType) => void;
+  sortKey: SortKeyType | null;
+  sortOrder: SortOrderType;
 };
 
 export const UserTableHeader: FC<Props> = ({
@@ -29,7 +34,7 @@ export const UserTableHeader: FC<Props> = ({
           <StudentHeader
             view={view}
             onSort={onSort}
-            sortKey={sortKey as "studyMinutes" | "score" | null}
+            sortKey={sortKey as StudentSortKeyType | null}
             sortOrder={sortOrder}
           />
         )}
@@ -38,7 +43,7 @@ export const UserTableHeader: FC<Props> = ({
           <MentorHeader
             view={view}
             onSort={onSort}
-            sortKey={sortKey as "experienceDays" | null}
+            sortKey={sortKey as MentorSortKeyType | null}
             sortOrder={sortOrder}
           />
         )}

@@ -1,16 +1,18 @@
 import type { FC } from "react";
 import { UserTableHeader } from "../molecules/tables/UserTableHeader";
 import { UserTableBody } from "../molecules/tables/UserTableBody";
-import type { UserType } from "../../types/user";
 
-type SortKey = "studyMinutes" | "score" | "experienceDays";
-type SortOrder = "asc" | "desc";
+import type { UserType } from "../../types/user";
+import type { SortKeyType, SortOrderType, ViewType } from "../../types/table";
+
+// type SortKey = SortKeyType;
+// type SortOrder = SortOrderType;
 type Props = {
-  view: "all" | "student" | "mentor";
+  view: ViewType;
   users: UserType[];
-  onSort: (key: SortKey) => void;
-  sortKey: SortKey | null;
-  sortOrder: SortOrder;
+  onSort: (key: SortKeyType) => void;
+  sortKey: SortKeyType | null;
+  sortOrder: SortOrderType;
 };
 
 export const UserTable: FC<Props> = ({

@@ -1,12 +1,18 @@
 import type { FC } from "react";
+
 import { HeaderCell } from "../../atoms/cell/HeaderCell";
 import { SortIcon } from "../../atoms/icons/SortIcon";
+import type {
+  MentorSortKeyType,
+  SortOrderType,
+  ViewType,
+} from "../../../types/table";
 
 type Props = {
-  view: "all" | "student" | "mentor";
-  onSort: (key: "experienceDays") => void;
-  sortKey: "experienceDays" | null;
-  sortOrder: "asc" | "desc";
+  view: ViewType;
+  onSort: (key: MentorSortKeyType) => void;
+  sortKey: MentorSortKeyType | null;
+  sortOrder: SortOrderType;
 };
 
 export const MentorHeader: FC<Props> = ({

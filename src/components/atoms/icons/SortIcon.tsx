@@ -4,11 +4,13 @@ import {
   FaSortNumericDownAlt,
 } from "react-icons/fa";
 
+import type { SortOrderType } from "../../../types/table";
+
 type Props = {
   isSortable: boolean;
   sortKey: string | null;
   activeKey: string;
-  sortOrder: "asc" | "desc";
+  sortOrder: SortOrderType;
 };
 
 export const SortIcon = ({

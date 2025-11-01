@@ -2,12 +2,19 @@ import type { FC } from "react";
 
 import { HeaderCell } from "../../atoms/cell/HeaderCell";
 import { SortIcon } from "../../atoms/icons/SortIcon";
+import type {
+  // SortKeyType,
+  SortOrderType,
+  StudentSortKeyType,
+  ViewType,
+} from "../../../types/table";
 
+// type SortKey = Exclude<SortKeyType, "experienceDays">;
 type Props = {
-  view: "all" | "student" | "mentor";
-  onSort: (key: "studyMinutes" | "score") => void;
-  sortKey: "studyMinutes" | "score" | null;
-  sortOrder: "asc" | "desc";
+  view: ViewType;
+  onSort: (key: StudentSortKeyType) => void;
+  sortKey: StudentSortKeyType | null;
+  sortOrder: SortOrderType;
 };
 
 export const StudentHeader: FC<Props> = ({

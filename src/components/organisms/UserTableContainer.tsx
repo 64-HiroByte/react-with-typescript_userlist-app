@@ -2,14 +2,16 @@ import { useState, type FC } from "react";
 import { USER_LIST } from "../../data/userList";
 import { UserTable } from "./UserTable";
 import type { Mentor, Student, UserType } from "../../types/user";
+import type { SortKeyType, SortOrderType, ViewType } from "../../types/table";
 
-type SortKey = "studyMinutes" | "score" | "experienceDays";
-type SortOrder = "asc" | "desc";
-type Props = { view: "all" | "student" | "mentor" };
+type SortKey = SortKeyType | null;
+// type SortOrder = SortOrderType;
+type Props = { view: ViewType };
 
 export const UserTableContainer: FC<Props> = ({ view }) => {
-  const [sortKey, setSortKey] = useState<SortKey | null>(null);
-  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+  const [sortKey, setSortKey] = useState<SortKey>(null);
+  // const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortOrder, setSortOrder] = useState<SortOrderType>("asc");
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
