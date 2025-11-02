@@ -1,18 +1,19 @@
 import type { FC } from "react";
 
-import { BaseDataCell } from "../cell/BaseDataCell";
-import { StudentDataCell } from "../cell/StudentDataCell";
-import { MentorDataCell } from "../cell/MentorDataCell";
+import { BaseDataCell } from "../cells/BaseDataCell";
+import { StudentDataCell } from "../cells/StudentDataCell";
+import { MentorDataCell } from "../cells/MentorDataCell";
 
-import type { UserType } from "../../types/user";
+import type { UserType } from "../../../types/user";
+import type { ViewType } from "../../../types/table";
 
-import { isMentorUser, isStudentUser } from "../../utils/typeGuards";
+import { isMentorUser, isStudentUser } from "../../../utils/typeGuards";
 
-import { TABLE_BORDER } from "../../styles/style";
+import { TABLE_BORDER } from "../../../styles/style";
 
 type Props = {
   user: UserType;
-  view: "all" | "student" | "mentor";
+  view: ViewType;
 };
 
 export const UserTableRow: FC<Props> = ({ user, view }) => {
