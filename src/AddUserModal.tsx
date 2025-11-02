@@ -1,8 +1,58 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+import type { Mentor, Student, UserBase } from "./types/user";
+import type { UserInputType } from "./types/userInput";
 
-export const AddUserModal = ({ onClose }: { onClose: () => void }) => {
+export const AddUserModal = ({
+  onClose,
+  onAddUser,
+}: {
+  onAddUser: (newUserData: UserInputType) => void;
+  onClose: () => void;
+}) => {
   const [role, setRole] = useState<"student" | "mentor">("student");
 
+  const [baseData, setBaseData] = useState<UserBase>({
+    id: 0,
+    name: "",
+    email: "",
+    age: 0,
+    postCode: "",
+    phone: "",
+    hobbies: [],
+    url: "",
+  });
+
+  const [studentData, setStudentData] = useState<Omit<Student, keyof UserBase>>(
+    {
+      role: "student",
+      studyMinutes: 0,
+      taskCode: 0,
+      studyLangs: [],
+      score: 0,
+    }
+  );
+
+  const [mentorData, setMentorData] = useState<Omit<Mentor, keyof UserBase>>({
+    role: "mentor",
+    experienceDays: 0,
+    useLangs: [],
+    availableStartCode: 0,
+    availableEndCode: 0,
+  });
+
+  const handleRoleChange = (newRole: "student" | "mentor") => {
+    setRole(newRole);
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const newUserData: UserInputType =
+      role === "student"
+        ? { ...baseData, ...studentData }
+        : { ...baseData, ...mentorData };
+    onAddUser(newUserData);
+    onClose();
+  };
   return (
     <div
       className="fixed inset-0 bg-black/60 flex justify-center items-center"
@@ -18,7 +68,7 @@ export const AddUserModal = ({ onClose }: { onClose: () => void }) => {
               className={`px-3 py-1 rounded ${
                 role === "student" ? "bg-blue-500 text-white" : "bg-gray-200"
               }`}
-              onClick={() => setRole("student")}
+              onClick={() => handleRoleChange("student")}
             >
               生徒
             </button>
@@ -27,7 +77,7 @@ export const AddUserModal = ({ onClose }: { onClose: () => void }) => {
               className={`px-3 py-1 rounded ${
                 role === "mentor" ? "bg-blue-500 text-white" : "bg-gray-200"
               }`}
-              onClick={() => setRole("mentor")}
+              onClick={() => handleRoleChange("mentor")}
             >
               メンター
             </button>

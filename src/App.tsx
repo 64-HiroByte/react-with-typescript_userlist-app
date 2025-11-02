@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { UserTableContainer } from "./components/organisms/UserTableContainer";
 import type { ViewType } from "./types/table";
 import type { UserType } from "./types/user";
+import type { UserInputType } from "./types/userInput";
 import { USER_LIST } from "./data/userList";
 import { AddUserModal } from "./AddUserModal";
 
@@ -11,7 +12,14 @@ function App() {
   const [users, setUsers] = useState<UserType[]>(USER_LIST);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const addUser = (newUser: UserType) => {
+  const userIdRef = useRef(Math.max(...users.map((user) => user.id)));
+
+  const onAddUser = (newUserData: UserInputType) => {
+    const newUser: UserType = {
+      ...newUserData,
+      id: userIdRef.current + 1,
+    };
+    userIdRef.current++;
     setUsers((users) => [...users, newUser]);
   };
 
@@ -31,7 +39,7 @@ function App() {
       {/* 新規ユーザー登録モーダル */}
       {isModalOpen && (
         <AddUserModal
-          // onAddUser={addUser}
+          onAddUser={onAddUser}
           onClose={() => setIsModalOpen(false)}
         />
       )}
