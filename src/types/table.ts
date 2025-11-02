@@ -1,4 +1,3 @@
-// src/types/table.ts
 export type ViewType = "all" | "student" | "mentor";
 
 export type StudentSortKeyType = "studyMinutes" | "score";

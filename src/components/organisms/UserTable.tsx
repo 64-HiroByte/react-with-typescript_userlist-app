@@ -5,8 +5,6 @@ import { UserTableBody } from "../molecules/tables/UserTableBody";
 import type { UserType } from "../../types/user";
 import type { SortKeyType, SortOrderType, ViewType } from "../../types/table";
 
-// type SortKey = SortKeyType;
-// type SortOrder = SortOrderType;
 type Props = {
   view: ViewType;
   users: UserType[];

@@ -4,27 +4,22 @@ import { UserTable } from "./UserTable";
 import type { Mentor, Student, UserType } from "../../types/user";
 import type { SortKeyType, SortOrderType, ViewType } from "../../types/table";
 
-type SortKey = SortKeyType | null;
-// type SortOrder = SortOrderType;
 type Props = { view: ViewType };
 
 export const UserTableContainer: FC<Props> = ({ view }) => {
-  const [sortKey, setSortKey] = useState<SortKey>(null);
-  // const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortKey, setSortKey] = useState<SortKeyType | null>(null);
   const [sortOrder, setSortOrder] = useState<SortOrderType>("asc");
 
-  const handleSort = (key: SortKey) => {
+  const handleSort = (key: SortKeyType) => {
     if (sortKey === key) {
-      // 同じ列をクリックした場合
+      // 同じ列でソートアイコンをクリックした場合: 昇順 -> 降順 -> リセット
       if (sortOrder === "asc") setSortOrder("desc");
       else if (sortOrder === "desc") {
         setSortKey(null);
         setSortOrder("asc");
-      } else {
-        setSortOrder("asc");
       }
     } else {
-      // 他の列
+      // 別の列のソートアイコンをクリックした場合: 新しいキーで昇順
       setSortKey(key);
       setSortOrder("asc");
     }
@@ -33,6 +28,7 @@ export const UserTableContainer: FC<Props> = ({ view }) => {
   const filteredUsers =
     view === "all" ? USER_LIST : USER_LIST.filter((u) => u.role === view);
 
+  // TODO: カスタムフックにするか検討する
   const sortedUsers = sortKey
     ? [...filteredUsers].sort((a, b) => {
         const getVal = (user: UserType): number | null => {

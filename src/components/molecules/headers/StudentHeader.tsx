@@ -9,7 +9,6 @@ import type {
   ViewType,
 } from "../../../types/table";
 
-// type SortKey = Exclude<SortKeyType, "experienceDays">;
 type Props = {
   view: ViewType;
   onSort: (key: StudentSortKeyType) => void;
