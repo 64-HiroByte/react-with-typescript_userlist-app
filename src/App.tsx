@@ -4,11 +4,16 @@ import { UserTableContainer } from "./components/organisms/UserTableContainer";
 import type { ViewType } from "./types/table";
 import type { UserType } from "./types/user";
 import { USER_LIST } from "./data/userList";
+import { AddUserModal } from "./AddUserModal";
 
 function App() {
   const [view, setView] = useState<ViewType>("all");
   const [users, setUsers] = useState<UserType[]>(USER_LIST);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const addUser = (newUser: UserType) => {
+    setUsers((users) => [...users, newUser]);
+  };
 
   return (
     <>
@@ -23,7 +28,13 @@ function App() {
       {/* データテーブル描画 */}
       <UserTableContainer view={view} users={users} />
 
-      {/* {if (isModalOpen) && <AddUserModal />} */}
+      {/* 新規ユーザー登録モーダル */}
+      {isModalOpen && (
+        <AddUserModal
+          // onAddUser={addUser}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </>
   );
 }
