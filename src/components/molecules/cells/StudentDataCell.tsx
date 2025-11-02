@@ -15,9 +15,11 @@ export const StudentDataCell: FC<{ user: UserType }> = ({ user }) => {
     <>
       <DataCell>{user.studyMinutes}</DataCell>
       <DataCell>{user.taskCode}</DataCell>
-      <DataCell>{user.studyLangs.join("\n")}</DataCell>
+      <DataCell hasNewLine>{user.studyLangs.join("\n")}</DataCell>
       <DataCell>{user.score}</DataCell>
-      <DataCell>{supportedUsers.map((u) => u.name).join("\n ")}</DataCell>
+      <DataCell hasNewLine>
+        {supportedUsers.map((u) => u.name).join("\n ")}
+      </DataCell>
     </>
   );
 };
