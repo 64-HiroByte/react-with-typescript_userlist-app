@@ -1,21 +1,25 @@
-import { useState, type FormEvent } from "react";
+import { useState, type FC, type FormEvent } from "react";
+
 import type {
   MentorFormType,
   StudentFormType,
   UserBaseFormType,
   UserFormType,
 } from "./types/userInput";
+import { UserBaseForm } from "./UserBaseForm";
+import { StudentForm } from "./StudentForm";
+import { MentorForm } from "./MentorForm";
 
 type Props = {
   onAddUser: (newUserData: UserFormType) => void;
   onClose: () => void;
 };
 
-export const AddUserModal = ({ onClose, onAddUser }: Props) => {
+export const AddUserModal: FC<Props> = (props) => {
+  const { onClose, onAddUser } = props;
   const [role, setRole] = useState<"student" | "mentor">("student");
 
   const [baseData, setBaseData] = useState<UserBaseFormType>({
-    // id: 0,
     name: "",
     email: "",
     age: "",
@@ -85,82 +89,29 @@ export const AddUserModal = ({ onClose, onAddUser }: Props) => {
           </div>
 
           {/* 共通 */}
-          <div>
-            <label htmlFor="nameForm">名前</label>
-            <input type="text" id="nameForm" />
-          </div>
-          <div>
-            <label htmlFor="emailForm">メールアドレス</label>
-            <input type="email" id="emailForm" />
-          </div>
-          <div>
-            <label htmlFor="age">年齢</label>
-            <input type="text" id="age" />
-          </div>
-          <div>
-            <label htmlFor="postCodeForm">郵便番号</label>
-            <input type="text" id="postCodeForm" />
-          </div>
-          <div>
-            <label htmlFor="phoneForm">電話番号</label>
-            <input type="text" id="phoneForm" />
-          </div>
-          <div>
-            <label htmlFor="hobiesForm">趣味</label>
-            <input type="text" id="hobiesForm" />
-          </div>
-          <div>
-            <label htmlFor="urlForm">URL</label>
-            <input type="text" id="urlForm" />
-          </div>
+          <UserBaseForm baseData={baseData} setBaseData={setBaseData} />
 
           {/* 生徒 */}
           {role === "student" && (
             <>
-              <div>
-                <label htmlFor="studyMinutesForm">勉強時間</label>
-                <input type="text" id="studyMinutesForm" />
-              </div>
-              <div>
-                <label htmlFor="taskCodeForm">課題番号</label>
-                <input type="text" id="taskCodeForm" />
-              </div>
-              <div>
-                <label htmlFor="studyLangsForm">学習中の言語</label>
-                <input type="text" id="studyLangsForm" />
-              </div>
-              <div>
-                <label htmlFor="scoreForm">ハピネススコア</label>
-                <input type="text" id="scoreForm" />
-              </div>
+              <StudentForm
+                studentData={studentData}
+                setStudentData={setStudentData}
+              />
             </>
           )}
 
           {/* メンター */}
           {role === "mentor" && (
             <>
-              <div>
-                <label htmlFor="experienceDaysForm">実務経験月数</label>
-                <input type="text" id="experienceDaysForm" />
-              </div>
-              <div>
-                <label htmlFor="useLangForm">現場で使っている言語</label>
-                <input type="text" id="useLangForm" />
-              </div>
-              <div>
-                <label htmlFor="availableStartCodeForm">
-                  担当できる課題番号初め
-                </label>
-                <input type="text" id="availableStartCodeForm" />
-              </div>
-              <div>
-                <label htmlFor="availableEndCodeForm">
-                  担当できる課題番号終わり
-                </label>
-                <input type="text" id="availableEndCodeForm" />
-              </div>
+              <MentorForm
+                mentorData={mentorData}
+                setMentorData={setMentorData}
+              />
             </>
           )}
+
+          {/* ボタン */}
           <div className="flex justify-end gap-2 mt-4">
             <button
               type="button"
