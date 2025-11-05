@@ -1,43 +1,44 @@
 import { useState, type FormEvent } from "react";
-import type { Mentor, Student, UserBase } from "./types/user";
-import type { UserInputType } from "./types/userInput";
+import type {
+  MentorFormType,
+  StudentFormType,
+  UserBaseFormType,
+  UserFormType,
+} from "./types/userInput";
 
-export const AddUserModal = ({
-  onClose,
-  onAddUser,
-}: {
-  onAddUser: (newUserData: UserInputType) => void;
+type Props = {
+  onAddUser: (newUserData: UserFormType) => void;
   onClose: () => void;
-}) => {
+};
+
+export const AddUserModal = ({ onClose, onAddUser }: Props) => {
   const [role, setRole] = useState<"student" | "mentor">("student");
 
-  const [baseData, setBaseData] = useState<UserBase>({
-    id: 0,
+  const [baseData, setBaseData] = useState<UserBaseFormType>({
+    // id: 0,
     name: "",
     email: "",
-    age: 0,
+    age: "",
     postCode: "",
     phone: "",
-    hobbies: [],
+    hobbies: "",
     url: "",
   });
 
-  const [studentData, setStudentData] = useState<Omit<Student, keyof UserBase>>(
-    {
-      role: "student",
-      studyMinutes: 0,
-      taskCode: 0,
-      studyLangs: [],
-      score: 0,
-    }
-  );
+  const [studentData, setStudentData] = useState<StudentFormType>({
+    role: "student",
+    studyMinutes: "",
+    taskCode: "",
+    studyLangs: "",
+    score: "",
+  });
 
-  const [mentorData, setMentorData] = useState<Omit<Mentor, keyof UserBase>>({
+  const [mentorData, setMentorData] = useState<MentorFormType>({
     role: "mentor",
-    experienceDays: 0,
-    useLangs: [],
-    availableStartCode: 0,
-    availableEndCode: 0,
+    experienceDays: "",
+    useLangs: "",
+    availableStartCode: "",
+    availableEndCode: "",
   });
 
   const handleRoleChange = (newRole: "student" | "mentor") => {
@@ -46,7 +47,7 @@ export const AddUserModal = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const newUserData: UserInputType =
+    const newUserData: UserFormType =
       role === "student"
         ? { ...baseData, ...studentData }
         : { ...baseData, ...mentorData };
