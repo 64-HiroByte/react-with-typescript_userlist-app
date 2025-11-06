@@ -89,25 +89,24 @@ export const AddUserModal: FC<Props> = (props) => {
           </div>
 
           {/* 共通 */}
-          <UserBaseForm baseData={baseData} setBaseData={setBaseData} />
+          {/* <UserBaseForm baseData={baseData} setBaseData={setBaseData} /> */}
+          <UserBaseForm data={baseData} setData={setBaseData} />
 
           {/* 生徒 */}
           {role === "student" && (
             <>
-              <StudentForm
+              <StudentForm data={studentData} setData={setStudentData} />
+              {/* <StudentForm
                 studentData={studentData}
                 setStudentData={setStudentData}
-              />
+              /> */}
             </>
           )}
 
           {/* メンター */}
           {role === "mentor" && (
             <>
-              <MentorForm
-                mentorData={mentorData}
-                setMentorData={setMentorData}
-              />
+              <MentorForm data={mentorData} setData={setMentorData} />
             </>
           )}
 
