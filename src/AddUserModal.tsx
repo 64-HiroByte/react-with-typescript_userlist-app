@@ -9,6 +9,7 @@ import type {
   UserBaseFormType,
   UserFormType,
 } from "./types/userInput";
+import { validateUserForm } from "./utils/formValidation";
 
 type Props = {
   onAddUser: (newUserData: UserFormType) => void;
@@ -18,6 +19,7 @@ type Props = {
 export const AddUserModal: FC<Props> = (props) => {
   const { onClose, onAddUser } = props;
   const [role, setRole] = useState<"student" | "mentor">("student");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const [baseData, setBaseData] = useState<UserBaseFormType>({
     name: "",
@@ -55,6 +57,15 @@ export const AddUserModal: FC<Props> = (props) => {
       role === "student"
         ? { ...baseData, ...studentData }
         : { ...baseData, ...mentorData };
+
+    // バリデーション
+    const validationErrors = validateUserForm(newUserData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    // ユーザー登録処理
     onAddUser(newUserData);
     onClose();
   };
@@ -89,17 +100,12 @@ export const AddUserModal: FC<Props> = (props) => {
           </div>
 
           {/* 共通 */}
-          {/* <UserBaseForm baseData={baseData} setBaseData={setBaseData} /> */}
           <UserBaseForm data={baseData} setData={setBaseData} />
 
           {/* 生徒 */}
           {role === "student" && (
             <>
               <StudentForm data={studentData} setData={setStudentData} />
-              {/* <StudentForm
-                studentData={studentData}
-                setStudentData={setStudentData}
-              /> */}
             </>
           )}
 

@@ -22,6 +22,7 @@ export const InputItem = (props: Props) => {
         value={value}
         onChange={onChange}
         className=""
+        required
       />
     </div>
   );
