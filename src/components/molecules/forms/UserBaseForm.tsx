@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import type { UserBaseFormType } from "./types/userInput";
-import { useFormFields } from "./hooks/useFormFields";
+import type { UserBaseFormType } from "../../../types/userInput";
+import { useFormFields } from "../../../hooks/useFormFields";
 
 type Props = {
   data: UserBaseFormType;

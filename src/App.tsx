@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 
 import { UserTableContainer } from "./components/organisms/UserTableContainer";
+import { AddUserModal } from "./components/organisms/modals/AddUserModal";
 import type { ViewType } from "./types/table";
 import type { UserType } from "./types/user";
 import type { UserFormType } from "./types/userInput";
 import { USER_LIST } from "./data/userList";
-import { AddUserModal } from "./AddUserModal";
 import { convertToUser } from "./utils/convertToUser";
 
 function App() {

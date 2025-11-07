@@ -1,6 +1,6 @@
 import type { ChangeEvent } from "react";
 
-import { InputItem } from "../InputItem";
+import { InputItem } from "../components/molecules/inputs/InputItem";
 
 export const useFormFields = <T extends Record<string, string>>(
   data: T,
