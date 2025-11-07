@@ -1,15 +1,15 @@
 import { useState, type FC, type FormEvent } from "react";
 
-import { UserBaseForm } from "./UserBaseForm";
-import { StudentForm } from "./StudentForm";
-import { MentorForm } from "./MentorForm";
+import { UserBaseForm } from "../../molecules/forms/UserBaseForm";
+import { StudentForm } from "../../molecules/forms/StudentForm";
+import { MentorForm } from "../../molecules/forms/MentorForm";
 import type {
   MentorFormType,
   StudentFormType,
   UserBaseFormType,
   UserFormType,
-} from "./types/userInput";
-import { validateUserForm } from "./utils/formValidation";
+} from "../../../types/userInput";
+import { validateUserForm } from "../../../utils/formValidation";
 
 type Props = {
   onAddUser: (newUserData: UserFormType) => void;
