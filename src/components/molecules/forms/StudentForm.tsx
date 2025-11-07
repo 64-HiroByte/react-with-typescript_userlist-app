@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
-import type { StudentFormType } from "./types/userInput";
-import { useFormFields } from "./hooks/useFormFields";
+import type { StudentFormType } from "../../../types/userInput";
+import { useFormFields } from "../../../hooks/useFormFields";
 
 type Props = {
   data: StudentFormType;
