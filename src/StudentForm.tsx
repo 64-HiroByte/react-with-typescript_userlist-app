@@ -6,7 +6,7 @@ import { useFormFields } from "./hooks/useFormFields";
 type Props = {
   data: StudentFormType;
   setData: (data: StudentFormType) => void;
-  errors: Record<string, string>;
+  errors: Record<keyof StudentFormType, string>;
 };
 
 export const StudentForm: FC<Props> = (props) => {

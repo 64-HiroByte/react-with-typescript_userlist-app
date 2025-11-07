@@ -76,7 +76,7 @@ export const AddUserModal: FC<Props> = (props) => {
     >
       <div className="bg-gray-100 rounded-lg p-6 w-[600px] max-h-[80vh] overflow-y-auto shadow-lg">
         <h2 className="text-xl font-bold mb-4">新規ユーザー登録</h2>
-        <form onSubmit={handleSubmit}>
+        <form method="post" onSubmit={handleSubmit}>
           {/* Role 切り替え */}
           <div className="flex gap-2 mb-4">
             <button

@@ -5,7 +5,7 @@ import { useFormFields } from "./hooks/useFormFields";
 type Props = {
   data: UserBaseFormType;
   setData: (data: UserBaseFormType) => void;
-  errors: Record<string, string>;
+  errors: Record<keyof UserBaseFormType, string>;
 };
 
 export const UserBaseForm: FC<Props> = (props) => {

@@ -6,7 +6,7 @@ import { useFormFields } from "./hooks/useFormFields";
 type Props = {
   data: MentorFormType;
   setData: (data: MentorFormType) => void;
-  errors: Record<string, string>;
+  errors: Record<keyof MentorFormType, string>;
 };
 
 export const MentorForm: FC<Props> = (props) => {

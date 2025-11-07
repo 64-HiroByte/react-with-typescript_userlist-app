@@ -13,7 +13,7 @@ export const useFormFields = <T extends Record<string, string>>(
 
   const renderFields = (
     fields: { label: string; type: string; name: string }[],
-    errors: Record<string, string>
+    errors: Record<keyof T, string>
   ) => {
     return fields.map((field) => (
       <InputItem
