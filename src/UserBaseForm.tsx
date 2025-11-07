@@ -5,10 +5,11 @@ import { useFormFields } from "./hooks/useFormFields";
 type Props = {
   data: UserBaseFormType;
   setData: (data: UserBaseFormType) => void;
+  errors: Record<string, string>;
 };
 
 export const UserBaseForm: FC<Props> = (props) => {
-  const { data, setData } = props;
+  const { data, setData, errors } = props;
   const { renderFields } = useFormFields(data, setData);
 
   const fields = [
@@ -21,5 +22,5 @@ export const UserBaseForm: FC<Props> = (props) => {
     { label: "URL", type: "url", name: "url" },
   ];
 
-  return <>{renderFields(fields)}</>;
+  return <>{renderFields(fields, errors)}</>;
 };

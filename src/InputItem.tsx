@@ -6,12 +6,13 @@ type Props = {
   value: string;
   name: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  error: string;
 };
 
 export const InputItem = (props: Props) => {
-  const { label, type, value, name, onChange } = props;
+  const { label, type, value, name, onChange, error } = props;
   return (
-    <div>
+    <div className="">
       <label htmlFor={name} className="">
         {label}
       </label>
@@ -21,9 +22,12 @@ export const InputItem = (props: Props) => {
         name={name}
         value={value}
         onChange={onChange}
-        className=""
+        className={`border p-2 rounded ${
+          error ? "border-red-500" : "border-gray-300"
+        }`}
         required
       />
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 };

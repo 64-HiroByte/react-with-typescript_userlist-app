@@ -6,10 +6,11 @@ import { useFormFields } from "./hooks/useFormFields";
 type Props = {
   data: StudentFormType;
   setData: (data: StudentFormType) => void;
+  errors: Record<string, string>;
 };
 
 export const StudentForm: FC<Props> = (props) => {
-  const { data, setData } = props;
+  const { data, setData, errors } = props;
   const { renderFields } = useFormFields(data, setData);
 
   const fields = [
@@ -19,5 +20,5 @@ export const StudentForm: FC<Props> = (props) => {
     { label: "ハピネススコア", type: "number", name: "score" },
   ];
 
-  return <>{renderFields(fields)}</>;
+  return <>{renderFields(fields, errors)}</>;
 };

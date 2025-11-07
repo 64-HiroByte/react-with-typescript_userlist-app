@@ -6,10 +6,11 @@ import { useFormFields } from "./hooks/useFormFields";
 type Props = {
   data: MentorFormType;
   setData: (data: MentorFormType) => void;
+  errors: Record<string, string>;
 };
 
 export const MentorForm: FC<Props> = (props) => {
-  const { data, setData } = props;
+  const { data, setData, errors } = props;
   const { renderFields } = useFormFields(data, setData);
 
   const fields = [
@@ -27,5 +28,5 @@ export const MentorForm: FC<Props> = (props) => {
     },
   ];
 
-  return <>{renderFields(fields)}</>;
+  return <>{renderFields(fields, errors)}</>;
 };

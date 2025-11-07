@@ -12,7 +12,8 @@ export const useFormFields = <T extends Record<string, string>>(
   };
 
   const renderFields = (
-    fields: { label: string; type: string; name: string }[]
+    fields: { label: string; type: string; name: string }[],
+    errors: Record<string, string>
   ) => {
     return fields.map((field) => (
       <InputItem
@@ -22,6 +23,7 @@ export const useFormFields = <T extends Record<string, string>>(
         name={field.name}
         value={data[field.name as keyof typeof data] ?? ""}
         onChange={handleChange}
+        error={errors[field.name]}
       />
     ));
   };
