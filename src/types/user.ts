@@ -1,7 +1,6 @@
-type UserBase = {
+export type UserBase = {
   id: number;
   name: string;
-
   email: string;
   age: number;
   postCode: string;

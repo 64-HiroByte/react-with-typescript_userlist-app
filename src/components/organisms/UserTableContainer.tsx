@@ -1,12 +1,15 @@
 import { useState, type FC } from "react";
-import { USER_LIST } from "../../data/userList";
+// import { USER_LIST } from "../../data/userList";
 import { UserTable } from "./UserTable";
 import type { Mentor, Student, UserType } from "../../types/user";
 import type { SortKeyType, SortOrderType, ViewType } from "../../types/table";
 
-type Props = { view: ViewType };
+type Props = {
+  view: ViewType;
+  users: UserType[];
+};
 
-export const UserTableContainer: FC<Props> = ({ view }) => {
+export const UserTableContainer: FC<Props> = ({ view, users }) => {
   const [sortKey, setSortKey] = useState<SortKeyType | null>(null);
   const [sortOrder, setSortOrder] = useState<SortOrderType>("asc");
 
@@ -26,7 +29,7 @@ export const UserTableContainer: FC<Props> = ({ view }) => {
   };
 
   const filteredUsers =
-    view === "all" ? USER_LIST : USER_LIST.filter((u) => u.role === view);
+    view === "all" ? users : users.filter((u) => u.role === view);
 
   // TODO: カスタムフックにするか検討する
   const sortedUsers = sortKey

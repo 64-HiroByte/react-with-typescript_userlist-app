@@ -1,8 +1,25 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+
 import { UserTableContainer } from "./components/organisms/UserTableContainer";
+import type { ViewType } from "./types/table";
+import type { UserType } from "./types/user";
+import type { UserFormType } from "./types/userInput";
+import { USER_LIST } from "./data/userList";
+import { AddUserModal } from "./AddUserModal";
+import { convertToUser } from "./utils/convertToUser";
 
 function App() {
-  const [view, setView] = useState<"all" | "student" | "mentor">("all");
+  const [view, setView] = useState<ViewType>("all");
+  const [users, setUsers] = useState<UserType[]>(USER_LIST);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const userIdRef = useRef(Math.max(...users.map((user) => user.id)));
+
+  const onAddUser = (newUserFormData: UserFormType) => {
+    userIdRef.current++;
+    const newUser = convertToUser(newUserFormData, userIdRef.current);
+    setUsers((users) => [...users, newUser]);
+  };
 
   return (
     <>
@@ -11,10 +28,19 @@ function App() {
         <button onClick={() => setView("all")}>全ユーザー</button>
         <button onClick={() => setView("student")}>生徒</button>
         <button onClick={() => setView("mentor")}>メンター</button>
+        <button onClick={() => setIsModalOpen(true)}>新規追加</button>
       </div>
 
       {/* データテーブル描画 */}
-      <UserTableContainer view={view} />
+      <UserTableContainer view={view} users={users} />
+
+      {/* 新規ユーザー登録モーダル */}
+      {isModalOpen && (
+        <AddUserModal
+          onAddUser={onAddUser}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </>
   );
 }

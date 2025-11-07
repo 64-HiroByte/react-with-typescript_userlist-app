@@ -14,10 +14,12 @@ export const MentorDataCell: FC<{ user: UserType }> = ({ user }) => {
   return (
     <>
       <DataCell>{user.experienceDays}</DataCell>
-      <DataCell>{user.useLangs.join("\n")}</DataCell>
+      <DataCell hasNewLine>{user.useLangs.join("\n")}</DataCell>
       <DataCell>{user.availableStartCode}</DataCell>
       <DataCell>{user.availableEndCode}</DataCell>
-      <DataCell>{supportedUsers.map((u) => u.name).join("\n")}</DataCell>
+      <DataCell hasNewLine>
+        {supportedUsers.map((u) => u.name).join("\n")}
+      </DataCell>
     </>
   );
 };
