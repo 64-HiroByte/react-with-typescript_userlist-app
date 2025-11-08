@@ -96,24 +96,6 @@ export const AddUserModal: FC<Props> = (props) => {
             >
               メンター
             </Button>
-            {/* <button
-              type="button"
-              className={`px-3 py-1 rounded ${
-                role === "student" ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-              onClick={() => handleRoleChange("student")}
-            >
-              生徒
-            </button>
-            <button
-              type="button"
-              className={`px-3 py-1 rounded ${
-                role === "mentor" ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
-              onClick={() => handleRoleChange("mentor")}
-            >
-              メンター
-            </button> */}
           </div>
 
           {/* 共通 */}
@@ -143,29 +125,10 @@ export const AddUserModal: FC<Props> = (props) => {
 
           {/* ボタン */}
           <div className="flex justify-end gap-2 mt-4">
-            <Button
-              type="button"
-              onClick={onClose}
-              color="gray"
-              // className="bg-gray-300 text-gray-800 hover:bg-gray-500 hover:text-white"
-            >
+            <Button type="button" onClick={onClose} color="gray">
               閉じる
             </Button>
             <Button type="submit">登録</Button>
-
-            {/* <button
-              type="button"
-              className="px-3 py-1 bg-gray-300 rounded"
-              onClick={onClose}
-            >
-              閉じる
-            </button>
-            <button
-              type="submit"
-              className="px-3 py-1 bg-blue-500 text-white rounded"
-            >
-              登録
-            </button> */}
           </div>
         </form>
       </div>

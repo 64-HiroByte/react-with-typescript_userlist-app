@@ -24,9 +24,6 @@ export const InputItem = (props: Props) => {
           name={name}
           value={value}
           onChange={onChange}
-          // className={`border p-2 rounded w-full shadow-md ${
-          //   error ? "border-red-500" : "border-gray-300"
-          // }`}
           className={cn(
             "border p-2 rounded w-full shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300",
             error ? "border-red-500 focus:border-none" : "border-gray-300"

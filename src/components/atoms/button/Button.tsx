@@ -21,7 +21,7 @@ export const Button: FC<Props> = (props) => {
   return (
     <button
       className={cn(
-        "px-2 py-1 rounded-md w-28 hover:cursor-pointer transition-colors duration-200",
+        "px-2 py-1 rounded-md w-28 hover:cursor-pointer transition-colors duration-200 shadow-lg",
         variant === "filled" &&
           color === "blue" && ["bg-blue-500 text-white hover:bg-blue-600"],
         variant === "filled" &&
@@ -31,7 +31,7 @@ export const Button: FC<Props> = (props) => {
         variant === "outline" && [
           isActive
             ? "bg-blue-600 text-white border border-blue-600"
-            : "border border-blue-400 text-gray-700 hover:bg-blue-200",
+            : "border border-blue-400 text-gray-700 hover:bg-blue-100",
         ],
         className
       )}
