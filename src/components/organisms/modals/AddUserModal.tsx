@@ -59,15 +59,20 @@ export const AddUserModal: FC<Props> = (props) => {
         ? { ...baseData, ...studentData }
         : { ...baseData, ...mentorData };
 
+    // 前処理（入力された値の前後のスペースを削除）
+    const trimmedUserData = Object.fromEntries(
+      Object.entries(newUserData).map(([key, value]) => [key, value.trim()])
+    ) as UserFormType;
+
     // バリデーション
-    const validationErrors = validateUserForm(newUserData);
+    const validationErrors = validateUserForm(trimmedUserData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
 
     // ユーザー登録処理
-    onAddUser(newUserData);
+    onAddUser(trimmedUserData);
     onClose();
   };
   return (

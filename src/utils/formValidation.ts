@@ -23,7 +23,7 @@ const validateFields = <T extends Record<string, string>>(
 
   // 空文字チェック（全フィールド共通）
   (Object.keys(data) as (keyof T)[]).forEach((key) => {
-    if (data[key].trim() === "") {
+    if (data[key] === "") {
       errors[key] = emptyMessage;
     }
   });
