@@ -7,6 +7,7 @@ import type { UserType } from "./types/user";
 import type { UserFormType } from "./types/userInput";
 import { USER_LIST } from "./data/userList";
 import { convertToUser } from "./utils/convertToUser";
+import { Button } from "./components/atoms/button/Button";
 
 function App() {
   const [view, setView] = useState<ViewType>("all");
@@ -24,11 +25,43 @@ function App() {
   return (
     <>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <div>
-        <button onClick={() => setView("all")}>全ユーザー</button>
-        <button onClick={() => setView("student")}>生徒</button>
-        <button onClick={() => setView("mentor")}>メンター</button>
-        <button onClick={() => setIsModalOpen(true)}>新規追加</button>
+
+      <div className="flex gap-1 mb-1 justify-center">
+        {/* 全ユーザー表示 */}
+        <Button
+          variant="outline"
+          isActive={view === "all"}
+          onClick={() => setView("all")}
+        >
+          全ユーザー
+        </Button>
+
+        {/* 生徒表示 */}
+        <Button
+          variant="outline"
+          isActive={view === "student"}
+          onClick={() => setView("student")}
+        >
+          生徒
+        </Button>
+
+        {/* メンター表示 */}
+        <Button
+          variant="outline"
+          isActive={view === "mentor"}
+          onClick={() => setView("mentor")}
+        >
+          メンター
+        </Button>
+
+        {/* 新規ユーザー登録 */}
+        <Button
+          onClick={() => setIsModalOpen(true)}
+          color="blue"
+          className="rounded-full size-8 font-bold"
+        >
+          ＋
+        </Button>
       </div>
 
       {/* データテーブル描画 */}

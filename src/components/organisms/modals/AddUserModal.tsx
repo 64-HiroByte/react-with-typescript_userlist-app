@@ -10,6 +10,7 @@ import type {
   UserFormType,
 } from "../../../types/userInput";
 import { validateUserForm } from "../../../utils/formValidation";
+import { Button } from "../../atoms/button/Button";
 
 type Props = {
   onAddUser: (newUserData: UserFormType) => void;
@@ -78,8 +79,24 @@ export const AddUserModal: FC<Props> = (props) => {
         <h2 className="text-xl font-bold mb-4">新規ユーザー登録</h2>
         <form method="post" onSubmit={handleSubmit}>
           {/* Role 切り替え */}
-          <div className="flex gap-2 mb-4">
-            <button
+          <div className="flex justify-center gap-2 mb-4">
+            <Button
+              type="button"
+              onClick={() => handleRoleChange("student")}
+              variant="outline"
+              isActive={role === "student"}
+            >
+              生徒
+            </Button>
+            <Button
+              type="button"
+              onClick={() => handleRoleChange("mentor")}
+              variant="outline"
+              isActive={role === "mentor"}
+            >
+              メンター
+            </Button>
+            {/* <button
               type="button"
               className={`px-3 py-1 rounded ${
                 role === "student" ? "bg-blue-500 text-white" : "bg-gray-200"
@@ -96,7 +113,7 @@ export const AddUserModal: FC<Props> = (props) => {
               onClick={() => handleRoleChange("mentor")}
             >
               メンター
-            </button>
+            </button> */}
           </div>
 
           {/* 共通 */}
@@ -126,7 +143,17 @@ export const AddUserModal: FC<Props> = (props) => {
 
           {/* ボタン */}
           <div className="flex justify-end gap-2 mt-4">
-            <button
+            <Button
+              type="button"
+              onClick={onClose}
+              color="gray"
+              // className="bg-gray-300 text-gray-800 hover:bg-gray-500 hover:text-white"
+            >
+              閉じる
+            </Button>
+            <Button type="submit">登録</Button>
+
+            {/* <button
               type="button"
               className="px-3 py-1 bg-gray-300 rounded"
               onClick={onClose}
@@ -138,7 +165,7 @@ export const AddUserModal: FC<Props> = (props) => {
               className="px-3 py-1 bg-blue-500 text-white rounded"
             >
               登録
-            </button>
+            </button> */}
           </div>
         </form>
       </div>
