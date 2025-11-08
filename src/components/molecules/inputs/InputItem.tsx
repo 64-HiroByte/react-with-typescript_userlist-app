@@ -1,4 +1,5 @@
 import type { ChangeEvent } from "react";
+import { cn } from "../../../lib/utils";
 
 type Props = {
   label: string;
@@ -12,22 +13,30 @@ type Props = {
 export const InputItem = (props: Props) => {
   const { label, type, value, name, onChange, error } = props;
   return (
-    <div className="">
-      <label htmlFor={name} className="">
-        {label}
-      </label>
-      <input
-        id={name}
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        className={`border p-2 rounded ${
-          error ? "border-red-500" : "border-gray-300"
-        }`}
-        required
-      />
-      {error && <p className="text-red-500">{error}</p>}
+    <div className="grid grid-cols-3 mb-3 gap-x-1 items-center">
+      <div className="text-right">
+        <label htmlFor={name}>{label}:</label>
+      </div>
+      <div className="col-span-2">
+        <input
+          id={name}
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          // className={`border p-2 rounded w-full shadow-md ${
+          //   error ? "border-red-500" : "border-gray-300"
+          // }`}
+          className={cn(
+            "border p-2 rounded w-full shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300",
+            error ? "border-red-500 focus:border-none" : "border-gray-300"
+          )}
+          required
+        />
+      </div>
+      {error && (
+        <p className=" col-start-2  col-span-2 ps-2 text-red-500">{error}</p>
+      )}
     </div>
   );
 };

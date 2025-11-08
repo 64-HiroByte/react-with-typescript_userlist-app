@@ -75,7 +75,7 @@ export const AddUserModal: FC<Props> = (props) => {
       className="fixed inset-0 bg-black/60 flex justify-center items-center"
       style={{ zIndex: 1000 }}
     >
-      <div className="bg-gray-100 rounded-lg p-6 w-[600px] max-h-[80vh] overflow-y-auto shadow-lg">
+      <div className="bg-gray-100 rounded-lg p-6 w-[640px] max-h-[80vh] overflow-y-auto shadow-lg">
         <h2 className="text-xl font-bold mb-4">新規ユーザー登録</h2>
         <form method="post" onSubmit={handleSubmit}>
           {/* Role 切り替え */}
