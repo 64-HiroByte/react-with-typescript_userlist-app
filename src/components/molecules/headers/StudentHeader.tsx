@@ -3,7 +3,6 @@ import type { FC } from "react";
 import { HeaderCell } from "../../atoms/cell/HeaderCell";
 import { SortIcon } from "../../atoms/icons/SortIcon";
 import type {
-  // SortKeyType,
   SortOrderType,
   StudentSortKeyType,
   ViewType,

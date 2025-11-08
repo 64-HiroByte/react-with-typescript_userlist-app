@@ -21,7 +21,7 @@ export const UserTable: FC<Props> = ({
   sortOrder,
 }) => {
   return (
-    <table className={`table-auto border-collapse`}>
+    <table className="table-auto border-collapse mx-auto">
       <UserTableHeader
         view={view}
         onSort={onSort}
