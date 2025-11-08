@@ -24,7 +24,9 @@ function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <h1 className="mb-4 text-4xl font-bold py-4 text-center bg-linear-to-r from-gray-300 via-gray-500 to-gray-300 text-white tracking-widest">
+        ユーザー一覧
+      </h1>
 
       <div className="flex gap-1 mb-1 justify-center">
         {/* 全ユーザー表示 */}
