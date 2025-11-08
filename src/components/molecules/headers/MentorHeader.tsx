@@ -26,7 +26,7 @@ export const MentorHeader: FC<Props> = ({
   return (
     <>
       <HeaderCell onClick={() => onSort("experienceDays")}>
-        実務経験月数
+        実務経験日数
         <SortIcon
           isSortable={isSortable}
           sortKey={sortKey}

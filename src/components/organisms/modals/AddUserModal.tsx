@@ -1,15 +1,16 @@
 import { useState, type FC, type FormEvent } from "react";
 
-import { UserBaseForm } from "./UserBaseForm";
-import { StudentForm } from "./StudentForm";
-import { MentorForm } from "./MentorForm";
+import { UserBaseForm } from "../../molecules/forms/UserBaseForm";
+import { StudentForm } from "../../molecules/forms/StudentForm";
+import { MentorForm } from "../../molecules/forms/MentorForm";
 import type {
   MentorFormType,
   StudentFormType,
   UserBaseFormType,
   UserFormType,
-} from "./types/userInput";
-import { validateUserForm } from "./utils/formValidation";
+} from "../../../types/userInput";
+import { validateUserForm } from "../../../utils/formValidation";
+import { Button } from "../../atoms/button/Button";
 
 type Props = {
   onAddUser: (newUserData: UserFormType) => void;
@@ -72,31 +73,29 @@ export const AddUserModal: FC<Props> = (props) => {
   return (
     <div
       className="fixed inset-0 bg-black/60 flex justify-center items-center"
-      style={{ zIndex: 1000 }}
+      style={{ zIndex: 100 }}
     >
-      <div className="bg-gray-100 rounded-lg p-6 w-[600px] max-h-[80vh] overflow-y-auto shadow-lg">
-        <h2 className="text-xl font-bold mb-4">新規ユーザー登録</h2>
+      <div className="bg-gray-100 rounded-lg p-6 w-[640px] max-h-[90vh] overflow-y-auto shadow-lg">
+        <h2 className="text-xl font-bold text-center mb-4">新規ユーザー登録</h2>
         <form method="post" onSubmit={handleSubmit}>
           {/* Role 切り替え */}
-          <div className="flex gap-2 mb-4">
-            <button
+          <div className="flex justify-center gap-2 mb-4">
+            <Button
               type="button"
-              className={`px-3 py-1 rounded ${
-                role === "student" ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
               onClick={() => handleRoleChange("student")}
+              variant="outline"
+              isActive={role === "student"}
             >
               生徒
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              className={`px-3 py-1 rounded ${
-                role === "mentor" ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
               onClick={() => handleRoleChange("mentor")}
+              variant="outline"
+              isActive={role === "mentor"}
             >
               メンター
-            </button>
+            </Button>
           </div>
 
           {/* 共通 */}
@@ -126,19 +125,10 @@ export const AddUserModal: FC<Props> = (props) => {
 
           {/* ボタン */}
           <div className="flex justify-end gap-2 mt-4">
-            <button
-              type="button"
-              className="px-3 py-1 bg-gray-300 rounded"
-              onClick={onClose}
-            >
+            <Button type="button" onClick={onClose} color="gray">
               閉じる
-            </button>
-            <button
-              type="submit"
-              className="px-3 py-1 bg-blue-500 text-white rounded"
-            >
-              登録
-            </button>
+            </Button>
+            <Button type="submit">登録</Button>
           </div>
         </form>
       </div>

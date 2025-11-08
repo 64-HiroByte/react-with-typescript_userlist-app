@@ -1,5 +1,4 @@
 import { useState, type FC } from "react";
-// import { USER_LIST } from "../../data/userList";
 import { UserTable } from "./UserTable";
 import type { Mentor, Student, UserType } from "../../types/user";
 import type { SortKeyType, SortOrderType, ViewType } from "../../types/table";
