@@ -2,6 +2,22 @@ import type { ChangeEvent } from "react";
 
 import { InputItem } from "../components/molecules/inputs/InputItem";
 
+/**
+ * フォーム入力値の状態管理、入力フィールドの描画を行うカスタムフック
+ *
+ * @template T - フォームデータの型（全て文字列）
+ * @param data - 現在のフォームデータ
+ * @param setData - フォームデータを更新する関数
+ * @returns handleChange: input要素のonChangeハンドラ
+ * @returns renderFields: フィールド定義に基づいてInputItemを描画する関数
+ *
+ * 使用例：
+ * ```
+ * const { renderFields } = useFormFields(data, setData);
+ *
+ * return <>{renderFields(fields, errors)}</>;
+ * ```
+ */
 export const useFormFields = <T extends Record<string, string>>(
   data: T,
   setData: (data: T) => void

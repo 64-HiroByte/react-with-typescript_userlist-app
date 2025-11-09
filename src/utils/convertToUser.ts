@@ -5,6 +5,11 @@ const toArrayFromStrings = (value: string): string[] => {
   return value ? value.split(",").map((s) => s.trim()) : [];
 };
 
+/**
+ * フォームデータをUserType形式に変換するユーティリティー関数。
+ * - 数値項目は、Numberに変換
+ * - カンマ区切り文字列は、配列に変換
+ */
 export const convertToUser = (
   formData: UserFormType,
   newUserId: number

@@ -14,6 +14,17 @@ const emptyMessage = "この項目は必須です";
 const isNumeric = (value: string) => /^\d+$/.test(value);
 const hasInvalidSeparator = (value: string) => /[　\s、，]/.test(value);
 
+/**
+ * 各フィールドに対してバリデーションを実行します。
+ * 空文字チェック、数値チェック、区切り文字（カンマ）チェックを行います。
+ * 該当するエラーを Partial<Record<keyof T, string>> で返します。
+ *
+ * @template T - 入力データの型（フォーム入力オブジェクト）
+ * @param data - チェックの対象となるデータオブジェクト
+ * @param numericFields - 数値のみ入力が必要なフィールド名の配列
+ * @param arrayFields - カンマ区切り入力が必要なフィールド名の配列
+ * @returns エラーメッセージを格納したオブジェクト（該当するエラーがない場合は、空のオブジェクト）
+ */
 const validateFields = <T extends Record<string, string>>(
   data: T,
   numericFields: (keyof T)[],
@@ -44,6 +55,13 @@ const validateFields = <T extends Record<string, string>>(
   return errors;
 };
 
+/**
+ * ユーザー登録フォーム全体のバリデーションを実行します。
+ * roleに応じて、指定のフィールドの検証を行います。
+ *
+ * @param data - チェックの対象となるデータ
+ * @returns 各フィールドのエラーを含むオブジェクト（エラーがない場合は空のオブジェクト）
+ */
 export const validateUserForm = (
   data: UserFormType
 ): Partial<Record<keyof UserFormType, string>> => {
