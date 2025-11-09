@@ -80,62 +80,70 @@ export const AddUserModal: FC<Props> = (props) => {
       className="fixed inset-0 bg-black/60 flex justify-center items-center"
       style={{ zIndex: 100 }}
     >
-      <div className="bg-gray-100 rounded-lg p-6 w-[640px] max-h-[90vh] overflow-y-auto shadow-lg">
-        <h2 className="text-xl font-bold text-center mb-4">新規ユーザー登録</h2>
-        <form method="post" onSubmit={handleSubmit}>
-          {/* Role 切り替え */}
-          <div className="flex justify-center gap-2 mb-4">
-            <Button
-              type="button"
-              onClick={() => handleRoleChange("student")}
-              variant="outline"
-              isActive={role === "student"}
-            >
-              生徒
-            </Button>
-            <Button
-              type="button"
-              onClick={() => handleRoleChange("mentor")}
-              variant="outline"
-              isActive={role === "mentor"}
-            >
-              メンター
-            </Button>
-          </div>
+      <div className="bg-gray-100 rounded-lg  w-[640px] max-h-[90vh] overflow-y-auto shadow-lg">
+        <h2 className="text-xl font-bold py-3 text-center bg-linear-to-r from-gray-300 via-gray-500 to-gray-300 text-gray-200 tracking-widest">
+          ユーザー登録
+        </h2>
+        <div className="p-6">
+          <form method="post" onSubmit={handleSubmit}>
+            {/* Role 切り替え */}
+            <div className="flex justify-center gap-2 mb-4">
+              <Button
+                type="button"
+                onClick={() => handleRoleChange("student")}
+                variant="outline"
+                isActive={role === "student"}
+              >
+                生徒
+              </Button>
+              <Button
+                type="button"
+                onClick={() => handleRoleChange("mentor")}
+                variant="outline"
+                isActive={role === "mentor"}
+              >
+                メンター
+              </Button>
+            </div>
 
-          {/* 共通 */}
-          <UserBaseForm data={baseData} setData={setBaseData} errors={errors} />
+            {/* 共通 */}
+            <UserBaseForm
+              data={baseData}
+              setData={setBaseData}
+              errors={errors}
+            />
 
-          {/* 生徒 */}
-          {role === "student" && (
-            <>
-              <StudentForm
-                data={studentData}
-                setData={setStudentData}
-                errors={errors}
-              />
-            </>
-          )}
+            {/* 生徒 */}
+            {role === "student" && (
+              <>
+                <StudentForm
+                  data={studentData}
+                  setData={setStudentData}
+                  errors={errors}
+                />
+              </>
+            )}
 
-          {/* メンター */}
-          {role === "mentor" && (
-            <>
-              <MentorForm
-                data={mentorData}
-                setData={setMentorData}
-                errors={errors}
-              />
-            </>
-          )}
+            {/* メンター */}
+            {role === "mentor" && (
+              <>
+                <MentorForm
+                  data={mentorData}
+                  setData={setMentorData}
+                  errors={errors}
+                />
+              </>
+            )}
 
-          {/* ボタン */}
-          <div className="flex justify-end gap-2 mt-4">
-            <Button type="button" onClick={onClose} color="gray">
-              閉じる
-            </Button>
-            <Button type="submit">登録</Button>
-          </div>
-        </form>
+            {/* ボタン */}
+            <div className="flex justify-end gap-2 mt-6">
+              <Button type="button" onClick={onClose} color="gray">
+                閉じる
+              </Button>
+              <Button type="submit">登録</Button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
