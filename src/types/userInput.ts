@@ -1,11 +1,5 @@
 import type { Mentor, Student, UserBase } from "./user";
 
-// type WithoutIdType<T> = Omit<T, "id">;
-
-// // 新規ユーザー登録用 型エイリアス
-// export type UserInputType = WithoutIdType<Student> | WithoutIdType<Mentor>;
-// export type UserBaseInputType = WithoutIdType<UserBase>
-
 // 既存のキーの型をstring型に変更する
 type ToString<T> = {
   [K in keyof T]: string;
