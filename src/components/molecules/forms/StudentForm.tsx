@@ -14,10 +14,25 @@ export const StudentForm: FC<Props> = (props) => {
   const { renderFields } = useFormFields(data, setData);
 
   const fields = [
-    { label: "勉強時間", type: "number", name: "studyMinutes" },
-    { label: "課題番号", type: "number", name: "taskCode" },
-    { label: "学習中の言語", type: "text", name: "studyLangs" },
-    { label: "ハピネススコア", type: "number", name: "score" },
+    {
+      label: "勉強時間",
+      type: "number",
+      name: "studyMinutes",
+      placeholder: "分単位で入力（例: 1200）",
+    },
+    { label: "課題番号", type: "number", name: "taskCode", placeholder: "101" },
+    {
+      label: "学習中の言語",
+      type: "text",
+      name: "studyLangs",
+      placeholder: "半角カンマ区切り（例: JavaScript,Python）",
+    },
+    {
+      label: "ハピネススコア",
+      type: "number",
+      name: "score",
+      placeholder: "80",
+    },
   ];
 
   return <>{renderFields(fields, errors)}</>;

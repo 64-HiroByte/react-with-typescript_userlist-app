@@ -8,6 +8,7 @@ import type {
 /** --- エラーメッセージ --- */
 const onlyNumberMessage = "数字のみ入力してください";
 const separateCommaMessage = "半角カンマ（,）区切りで入力してください";
+const emptyMessage = "この項目は必須です";
 
 /** --- バリデーション --- */
 const isNumeric = (value: string) => /^\d+$/.test(value);
@@ -20,12 +21,21 @@ const validateFields = <T extends Record<string, string>>(
 ): Partial<Record<keyof T, string>> => {
   const errors: Partial<Record<keyof T, string>> = {};
 
+  // 空文字チェック（全フィールド共通）
+  (Object.keys(data) as (keyof T)[]).forEach((key) => {
+    if (data[key] === "") {
+      errors[key] = emptyMessage;
+    }
+  });
+
+  // 数値項目チェック
   numericFields.forEach((key) => {
     if (!isNumeric(data[key])) {
       errors[key] = onlyNumberMessage;
     }
   });
 
+  // 配列（カンマ区切り）項目チェック
   arrayFields.forEach((key) => {
     if (hasInvalidSeparator(data[key])) {
       errors[key] = separateCommaMessage;

@@ -31,7 +31,7 @@ export const Button: FC<Props> = (props) => {
         variant === "outline" && [
           isActive
             ? "bg-blue-600 text-white border border-blue-600"
-            : "border border-blue-400 text-gray-700 hover:bg-blue-100",
+            : "border border-blue-400 text-gray-700 hover:bg-blue-200 hover:border-blue-200",
         ],
         className
       )}

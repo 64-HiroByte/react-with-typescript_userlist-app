@@ -14,17 +14,29 @@ export const MentorForm: FC<Props> = (props) => {
   const { renderFields } = useFormFields(data, setData);
 
   const fields = [
-    { label: "実務経験日数", type: "number", name: "experienceDays" },
-    { label: "現場で使っている言語", type: "text", name: "useLangs" },
+    {
+      label: "実務経験日数",
+      type: "number",
+      name: "experienceDays",
+      placeholder: "180",
+    },
+    {
+      label: "現場で使っている言語",
+      type: "text",
+      name: "useLangs",
+      placeholder: "半角カンマ区切り（例: GoLang,Next.js）",
+    },
     {
       label: "担当できる課題番号初め",
       type: "number",
       name: "availableStartCode",
+      placeholder: "101",
     },
     {
       label: "担当できる課題番号終わり",
       type: "number",
       name: "availableEndCode",
+      placeholder: "500",
     },
   ];
 
