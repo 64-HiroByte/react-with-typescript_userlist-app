@@ -28,6 +28,7 @@ function App() {
         ユーザー一覧
       </h1>
 
+      {/* 表示切り替えボタンとユーザー登録ボタン */}
       <div className="flex gap-1 my-4 justify-center">
         {/* 全ユーザー表示 */}
         <Button
@@ -56,7 +57,7 @@ function App() {
           メンター
         </Button>
 
-        {/* 新規ユーザー登録 */}
+        {/* ユーザー登録 */}
         <Button
           onClick={() => setIsModalOpen(true)}
           color="blue"

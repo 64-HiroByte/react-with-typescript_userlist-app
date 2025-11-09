@@ -19,11 +19,18 @@ export const SortIcon = ({
   activeKey,
   sortOrder,
 }: Props) => {
+  // ソート不可の場合はリターン
   if (!isSortable) return null;
+
+  // 初期状態（ソートなし）
   if (sortKey !== activeKey)
     return <FaSort className="inline ml-1 text-gray-400" />;
+
+  // 昇順
   if (sortOrder === "asc")
     return <FaSortNumericDown className="inline ml-1 text-gray-600" />;
+
+  // 降順
   if (sortOrder === "desc")
     return <FaSortNumericDownAlt className="inline ml-1 text-gray-600" />;
   return <FaSort className="inline ml-1 text-gray-400" />;

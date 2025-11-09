@@ -30,7 +30,6 @@ export const UserTableContainer: FC<Props> = ({ view, users }) => {
   const filteredUsers =
     view === "all" ? users : users.filter((u) => u.role === view);
 
-  // TODO: カスタムフックにするか検討する
   const sortedUsers = sortKey
     ? [...filteredUsers].sort((a, b) => {
         const getVal = (user: UserType): number | null => {

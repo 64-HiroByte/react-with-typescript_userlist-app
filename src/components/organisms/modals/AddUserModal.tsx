@@ -54,6 +54,7 @@ export const AddUserModal: FC<Props> = (props) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
     const newUserData: UserFormType =
       role === "student"
         ? { ...baseData, ...studentData }

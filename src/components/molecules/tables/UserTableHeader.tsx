@@ -27,10 +27,10 @@ export const UserTableHeader: FC<Props> = ({
   return (
     <thead>
       <tr className="bg-gray-200">
-        {/* 共通ヘッダー */}
+        {/* 共通 */}
         <CommonHeader />
 
-        {/* student */}
+        {/* 生徒 */}
         {view !== "mentor" && (
           <StudentHeader
             view={view}
@@ -40,7 +40,7 @@ export const UserTableHeader: FC<Props> = ({
           />
         )}
 
-        {/* mentor */}
+        {/* メンター */}
         {view !== "student" && (
           <MentorHeader
             view={view}

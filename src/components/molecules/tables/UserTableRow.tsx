@@ -49,6 +49,13 @@ export const UserTableRow: FC<Props> = ({ user, view }) => {
   return null;
 };
 
+/**
+ * 指定された数だけ空の<td>要素を生成して返す。
+ *
+ * @param count - レンダリングする空セルの数
+ * @param userId - ユーザーID（keyを一意にするのに使用）
+ * @returns 空の<td>要素の配列
+ */
 const renderEmptyCells = (count: number, userId: number) => {
   return Array.from({ length: count }).map((_, i) => (
     <td key={`${userId}-${i}`} className={TABLE_BORDER}></td>
