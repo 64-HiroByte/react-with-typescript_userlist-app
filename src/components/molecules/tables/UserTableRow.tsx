@@ -1,0 +1,63 @@
+import type { FC } from "react";
+
+import { BaseDataCell } from "../cells/BaseDataCell";
+import { StudentDataCell } from "../cells/StudentDataCell";
+import { MentorDataCell } from "../cells/MentorDataCell";
+
+import type { UserType } from "../../../types/user";
+import type { ViewType } from "../../../types/table";
+
+import { isMentorUser, isStudentUser } from "../../../utils/typeGuards";
+
+import { TABLE_BORDER } from "../../../styles/style";
+
+type Props = {
+  user: UserType;
+  view: ViewType;
+};
+
+export const UserTableRow: FC<Props> = ({ user, view }) => {
+  const STUDENT_EMPTY_COLS = 5;
+  const MENTOR_EMPTY_COLS = 5;
+
+  // 生徒の場合
+  if (isStudentUser(user)) {
+    return (
+      <tr>
+        <BaseDataCell user={user} />
+        <StudentDataCell user={user} />
+
+        {/* 全ユーザー表示の場合は、メンター欄を空欄にする */}
+        {view === "all" && renderEmptyCells(MENTOR_EMPTY_COLS, user.id)}
+      </tr>
+    );
+  }
+
+  // メンターの場合
+  if (isMentorUser(user)) {
+    return (
+      <tr>
+        <BaseDataCell user={user} />
+
+        {/* 全ユーザー表示の場合は、生徒欄を空欄にする */}
+        {view === "all" && renderEmptyCells(STUDENT_EMPTY_COLS, user.id)}
+
+        <MentorDataCell user={user} />
+      </tr>
+    );
+  }
+  return null;
+};
+
+/**
+ * 指定された数だけ空の<td>要素を生成して返す。
+ *
+ * @param count - レンダリングする空セルの数
+ * @param userId - ユーザーID（keyを一意にするのに使用）
+ * @returns 空の<td>要素の配列
+ */
+const renderEmptyCells = (count: number, userId: number) => {
+  return Array.from({ length: count }).map((_, i) => (
+    <td key={`${userId}-${i}`} className={TABLE_BORDER}></td>
+  ));
+};
